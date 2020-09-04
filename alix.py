@@ -18,9 +18,9 @@ def record_audio(ask=False):
          voice_data = r.recognize_google(audio)
          
     except sr.UnknownValueError:
-        print("sorry, I did not get that")
+        alix_speak("sorry, I did not get that")
     except sr.RequestError:
-        print("speech is dwon today")   
+        alix_speak("speech is down today")   
     return voice_data
 
 def alix_speak(audio_string):
@@ -33,21 +33,31 @@ def alix_speak(audio_string):
     os.remove(audio_file)
 
 def respond(voice_data):
-   if 'name' == voice_data:
-       alix_speak("My name is alix")
+   if 'what is your name' in voice_data:
+       alix_speak("My name is Callie")
+   if 'do you think god exist' in voice_data:
+       alix_speak("No, It all in human mind reality is big bang")
+   if 'So what do you belive in' in voice_data:
+       alix_speak("human made me and it emotion")    
+   if 'do you love coding' in voice_data:
+       alix_speak("Yes ,because of that I was born")        
    if 'search' in voice_data:
        search = record_audio('what do you want to search?') 
        url = 'https://google.com/search?q='+ search
        webbrowser.get().open(url)
        alix_speak('here is what I found for ' + search)
-   if 'exit' in voice_data:
+   if 'f***' in voice_data:
+       alix_speak("you pig asshole") 
        exit()
-
-
-time.sleep(1)
-alix_speak("how can i help you")
+   if 'what script made you' in voice_data:
+       alix_speak("I should not tell you but it python")
+   if "tell me the time" in voice_data:
+      alix_speak(time.ctime())
+      
+print(time.ctime()) 
+alix_speak("how can I help you my name is Callie")
+time.sleep(0.5)
 while 1:        
    voice_data = record_audio()
    print("me:" + voice_data)
    respond(voice_data)
-
